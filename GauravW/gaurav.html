@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Wankhede</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #E6E6FA;
+        }
+        .hd{
+            margin: 0.5%;
+            padding: 1%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        img{
+            width: 65%;
+            border-radius: 5%;
+        }
+        .images{  
+            margin-top: 5%;
+            margin-bottom: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .images button{
+            width: 25%;
+            padding: 2%;
+            margin: 2%;
+            background-color: #800080;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        .images button:hover{
+            border: 3px solid #39FF14;
+            cursor: pointer;
+        }
+        .votes{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3%;
+        }
+        .votes button{
+            width: 20%;
+            padding:1%;
+            margin: 10%;
+            background-color: #800080;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 5px;
+        }
+        .votes button:hover{
+            border: 3px solid #39FF14;
+            cursor: pointer;
+        }
+        p{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="hd">
+        <h2>Which hair style do you like?</h2>
+    </div>
+
+    <div class="images">
+        <img src="gw_long.png" alt="Long">
+        <button id="longBtn">Long Hair</button>
+    </div>
+        
+    <div class="images">
+        <img src="gw_short.png" alt="Short">
+        <button id="shortBtn">Short Hair</button>
+    </div>
+
+    <div class="votes"> 
+        <button id="vt">Total Votes</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        let lBtn = document.getElementById('longBtn');
+        let sBtn = document.getElementById('shortBtn');
+        let res = document.getElementById('vt');
+
+        lBtn.addEventListener('click', longH);
+        sBtn.addEventListener('click', shortH);
+        res.addEventListener('click', fVotes);
+        
+        let countLong = 0;
+        let countShort = 0;
+
+        function longH(e){
+            countLong++;
+            localStorage.setItem('cl', countLong);
+        }
+        function shortH(e){
+            countShort++;
+            localStorage.setItem('cs', countShort);
+        }
+
+        function fVotes(e){
+            if(msg.style.display == "none"){
+                msg.textContent = `Long Hair: ${countLong}    Short Hair: ${countShort}`;
+                msg.style.display = "block";
+            }else{
+                msg.style.display = "none";
+            }
+            localStorage.setItem('cl', countLong);
+            localStorage.setItem('cs', countShort);
+        }
+
+        window.addEventListener('load', () => {
+            countLong = localStorage.getItem('cl');
+            countShort = localStorage.getItem('cs');
+        });
+
+    </script>
+
+</body>
+</html>
+
+
